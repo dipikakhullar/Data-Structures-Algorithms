@@ -141,6 +141,7 @@ def dfs(adjacency_map, start_node, marked, reverse_postorder):
 
 TOPOLOGICAL_SORT(edges_list)
 
+
 def is_cyclic(edges_list):
 	"""
 	This visits each vertex at most once, and considers each edge at most once, so its runtime is 𝑂(𝑉+𝐸).
