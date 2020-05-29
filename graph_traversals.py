@@ -139,6 +139,8 @@ def dfs(adjacency_map, start_node, marked, reverse_postorder):
 	reverse_postorder.append(start_node)
 
 
+
+
 TOPOLOGICAL_SORT(edges_list)
 
 
