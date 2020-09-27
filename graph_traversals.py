@@ -133,10 +133,11 @@ def TOPOLOGICAL_SORT(edges_list):
 def dfs(adjacency_map, start_node, marked, reverse_postorder):
 	marked.add(start_node)
 	# print(adjacency_map[start_node])
+	print(start_node)
 	for neighbor in adjacency_map[start_node]:
 		if neighbor not in marked:
 			dfs(adjacency_map, neighbor, marked, reverse_postorder)
-	reverse_postorder.append(start_node)
+	reverse_postorder.insert(0, start_node)
 
 
 
