@@ -83,6 +83,36 @@ def sum_each_level(root):
 
 	return sum_levels
 
+# def zig_zag(root):
+
+# 	#instead of a queue, use a dequeue that can pop from the front when level is an odd number and 
+# 	#pop from back when level is an even number. 
+# 	queue = Queue()
+# 	level = 0
+
+
+def has_path_sum(root, total_sum):
+	if root == None:
+		return total_sum == 0
+	else:
+		remaining_sum = total_sum - root.value
+		left = has_path_sum(root.left, remaining_sum)
+		right = has_path_sum(root.right, remaining_sum)
+		return left or right
+
+def compute_height(root):
+	if root == None:
+		return 0
+	else:
+		left_height = 1 + compute_height(root.left)
+		right_height = 1 + compute_height(root.right)
+		return max(left_height, right_height)
+
+
+#Longest path in the tree, from any node to another node . 
+# def get_diameter(root):
+
+
 
 
 level_order = level_order_traversal(root)
@@ -93,6 +123,15 @@ print("top view: ", top_view)
 
 sum_levels = sum_each_level(root)
 print("sum levels: ", sum_levels)
+
+has_path_sum1 = has_path_sum(root, 7)
+print("has path sum: ", has_path_sum1)
+
+has_path_sum2 = has_path_sum(root, 17)
+print("has path sum: ", has_path_sum2)
+
+height = compute_height(root)
+print("height: ", height)
 
 
 
