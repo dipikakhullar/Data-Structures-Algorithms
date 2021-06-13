@@ -5,12 +5,12 @@ def knapsack(weights, items_values, weight_capacity):
 	rows = len(weights) # we need a column of zeros
 	columns = weight_capacity + 1
 
-	table = [[0 for x in range(columns)] for y in range(columns)]
+	table = [[0 for x in range(columns)] for y in range(rows)]
 
 	# we want to continue to add one more item into the bag
 	# iterate over items, then iterate over colums
 	for i in range(rows):
-		for curr_capacity in range(1, columns):
+		for curr_capacity in range(columns):
 
 			#if the the item weighs more than the capacity at that column, 
 			# then just look at the weight above, because we can't add the item to our bag. 
@@ -19,11 +19,12 @@ def knapsack(weights, items_values, weight_capacity):
 
 			#if the value of the item is less than the capacity we have to do the max calculation. 
 			else:
-				leftover_weights = weight_capacity = weights[i]
+				leftover_weights = curr_capacity - weights[i]
 				best_value_with_leftover_weights = table[i - 1][leftover_weights]
 				best_value_with_new_item = items_values[i] + best_value_with_leftover_weights
+				
 				best_value_without_new_item = table[i - 1][curr_capacity] 
-				max(best_value_with_new_item, best_value_without_new_item)
+				table[i][curr_capacity] = max(best_value_with_new_item, best_value_without_new_item)
 	return table
 
 
@@ -32,9 +33,9 @@ def knapsack(weights, items_values, weight_capacity):
 
 print("KNAPSACK")
 vals = [1,4,5,7]
-weights = [1,1,4,5]
+weights = [1,3,4,5]
 capacity = 5
-print(knapsack(vals, weights, capacity))
+print(knapsack(weights, vals, capacity))
 
 
 """
